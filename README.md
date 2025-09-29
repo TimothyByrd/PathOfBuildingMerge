@@ -2,7 +2,7 @@
 
 This tool is to merge a build from one Path of Building save file into another.
 
-If the PoB being merged has more than one set of items, skilla, etc., it will try to merge in the currently active ones.
+If the PoB being merged has more than one set of items, skills, etc., it will try to merge in the currently active ones.
 
 Path of Building is written in Lua, but I haven't worked with Lua so this is in C#. I built it using Visual Studio Community Edition.
 
