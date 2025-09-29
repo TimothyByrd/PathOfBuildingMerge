@@ -1,0 +1,13 @@
+# editor backup file
+*.asv#
+
+# binary files
+.vs/
+bin/
+obj/
+packages/
+**/*.csproj.user
+**/*.vcxproj.user
+x64/
+
+#other
