@@ -33,7 +33,7 @@
             textBoxMainPobFile = new TextBox();
             textBoxPobFileToMerge = new TextBox();
             buttonBrowsePobFileToMerge = new Button();
-            label2 = new Label();
+            labelPobToMerge = new Label();
             textBoxNewLoadoutName = new TextBox();
             label3 = new Label();
             textBoxOutputPob = new TextBox();
@@ -91,14 +91,14 @@
             buttonBrowsePobFileToMerge.UseVisualStyleBackColor = true;
             buttonBrowsePobFileToMerge.Click += buttonBrowsePobFileToMerge_Click;
             // 
-            // label2
+            // labelPobToMerge
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 65);
-            label2.Name = "label2";
-            label2.Size = new Size(111, 15);
-            label2.TabIndex = 3;
-            label2.Text = "PoB file to merge in";
+            labelPobToMerge.AutoSize = true;
+            labelPobToMerge.Location = new Point(12, 65);
+            labelPobToMerge.Name = "labelPobToMerge";
+            labelPobToMerge.Size = new Size(111, 15);
+            labelPobToMerge.TabIndex = 3;
+            labelPobToMerge.Text = "PoB file to merge in";
             // 
             // textBoxNewLoadoutName
             // 
@@ -168,7 +168,7 @@
             Controls.Add(label3);
             Controls.Add(textBoxPobFileToMerge);
             Controls.Add(buttonBrowsePobFileToMerge);
-            Controls.Add(label2);
+            Controls.Add(labelPobToMerge);
             Controls.Add(textBoxMainPobFile);
             Controls.Add(buttonBrowseMainPobFile);
             Controls.Add(labelMainPobFile);
@@ -189,7 +189,7 @@
         private TextBox textBoxMainPobFile;
         private TextBox textBoxPobFileToMerge;
         private Button buttonBrowsePobFileToMerge;
-        private Label label2;
+        private Label labelPobToMerge;
         private TextBox textBoxNewLoadoutName;
         private Label label3;
         private TextBox textBoxOutputPob;

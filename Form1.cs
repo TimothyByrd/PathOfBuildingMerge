@@ -34,7 +34,8 @@ namespace PathOfBuildingMerge
         private void ShowOpenFileDialog(string title, TextBox textBox, bool mustExist = true)
         {
             var currentDirectory = Directory.GetCurrentDirectory();
-            Directory.SetCurrentDirectory(_pobPath);
+            if (Directory.Exists(_pobPath))
+                Directory.SetCurrentDirectory(_pobPath);
             openFileDialog1.Title = title;
             openFileDialog1.FileName = textBox.Text;
             openFileDialog1.CheckFileExists = mustExist;
@@ -58,7 +59,8 @@ namespace PathOfBuildingMerge
         private void buttonBrowseOutputPob_Click(object sender, EventArgs e)
         {
             var currentDirectory = Directory.GetCurrentDirectory();
-            Directory.SetCurrentDirectory(_pobPath);
+            if (Directory.Exists(_pobPath))
+                Directory.SetCurrentDirectory(_pobPath);
             saveFileDialog1.FileName = textBoxOutputPob.Text;
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -79,9 +81,9 @@ namespace PathOfBuildingMerge
         {
             CheckEnableMergeButton();
             if (File.Exists(textBoxPobFileToMerge.Text))
-                textBoxPobFileToMerge.Text = $"PoB file to merge in - '{Path.GetFileNameWithoutExtension(textBoxPobFileToMerge.Text)}'";
+                labelPobToMerge.Text = $"PoB file to merge in - '{Path.GetFileNameWithoutExtension(textBoxPobFileToMerge.Text)}'";
             else
-                textBoxPobFileToMerge.Text = "PoB file to merge in (required)";
+                labelPobToMerge.Text = "PoB file to merge in (required)";
         }
 
         private void buttonMerge_Click(object sender, EventArgs e)
