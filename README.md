@@ -12,3 +12,9 @@ Path of Building is written in Lua, but I haven't worked with Lua so this is in 
 If this project helped you, you can help me :) 
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=XE5JR3FR458ZE&currency_code=USD)
+
+
+Note for self on tagging:
+
+git tag -a v1.0.1 -m "Release version 1.0.1"
+git push origin v1.0.1
