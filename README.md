@@ -63,7 +63,7 @@ Here is an example of creating a PoB with several build snapshots.
 25. Changed to "Week 10.xml" and clicked 'Merge'.
 26. Changed to "Week 13.xml" and clicked 'Merge'.
 27. Deleted the "Day ?" and "Week ??" saves from Path of Building.
-28. Opened "Ben_Still_Clicking_MERC" in Path of Building. It now has the current snapshot as default and loadout for all the other snapshots I had saved.
+28. Opened "Ben_Still_Clicking_MERC" in Path of Building. It now has the current snapshot as default and loadouts for all the other snapshots I had saved.
 
 ### Example: Copying a loadout from one PoB to another.
 
