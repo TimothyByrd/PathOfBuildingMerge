@@ -39,6 +39,7 @@ Here is an example of creating a PoB with several build snapshots.
     - By the way, I am saving all these PoBs together in a new folder to keep things straight and make the snapshots easier to delete later.
 3. I opened snapshot "Day 4" in Path of building and saved it as "Day 4".
 4. I opened snapshot "Day 5" in Path of building and saved it as "Day 5".
+    - Warning: Sometimes when you open an older snapshot in Path of Building the gods in the pantheon are not set, so check that.
 5. I opened snapshot "Day 6" in Path of building and saved it as "Day 6".
 6. I opened snapshot "Week 1" in Path of building and saved it as "Week 1".
 7. I opened snapshot "Week 2" in Path of building and saved it as "Week 2".
