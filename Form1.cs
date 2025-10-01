@@ -109,7 +109,7 @@ namespace PathOfBuildingMerge
                 return;
             }
 
-            var msg = $"Merged PoB '{Path.GetFileNameWithoutExtension(pobToMerge)}' into '{Path.GetFileNameWithoutExtension(mainPob)}' as loadout {newLoadoutName}, saving result to {Path.GetFileNameWithoutExtension(outputPob)}";
+            var msg = $"Merged PoB '{Path.GetFileName(pobToMerge)}' into '{Path.GetFileName(mainPob)}' as loadout '{newLoadoutName}', saving result to '{Path.GetFileName(outputPob)}'";
             MessageBox.Show(this, msg, "Success");
         }
 #pragma warning restore IDE1006 // Naming Styles
