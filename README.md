@@ -45,7 +45,7 @@ Here is an example of creating a PoB with several build snapshots.
     - Select that snapshot file as the PoB file to merge in.
     - Click the "Merge" button.
 7. Open "All the Snapshots" in Path of Building.
-8. Optionally clean things up byy deleting the "Default" sets (tree, items, skills and config).
+8. Optionally clean things up by deleting the "Default" sets (tree, items, skills and config).
 
 ### Example: Copying a loadout from one PoB to another.
 
