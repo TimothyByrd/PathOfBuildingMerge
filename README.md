@@ -28,7 +28,6 @@ Path of Building is written in Lua, but I haven't worked with Lua so
 this is in C#. I built it using Visual Studio Community Edition.
 
 ## Sample Usage
-<a name="h10" />
 
 ### Example: Creating a PoB of a set of snapshots from poe.ninja
 
@@ -59,7 +58,6 @@ Here is an example of creating a PoB with several build snapshots.
 8. Click the Merge button.
 
 ## Donation
-<a name="h11" />
 
 If this project helped you, you can help me :) 
 
