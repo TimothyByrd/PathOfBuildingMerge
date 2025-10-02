@@ -35,8 +35,9 @@ Here is an example of creating a PoB with several build snapshots.
 
 1. Look up a character on poe.ninja.
 2. For each snapshot on poe.ninja:
-    - Open each snapshot in Path of Building
-    - Save each snapshot with a good name. For example, for the "Hour 3" snapshot, I save the PoB as "Hour 3". (I'm clever that way.)
+    - Open the snapshot in Path of Building
+    - Make sure the config has the pantheon and bandit choice set correctly for the snapshot.
+    - Save the snapshot with a good name. For example, for the "Hour 3" snapshot, I save the PoB as "Hour 3". (I'm clever that way.)
 3. Create a new, empty build in Path of Building and immediately save it. (We'll pretend I've saved it as "All the Snapshots".)
 4. Run the PathOfBuildingMergeTool.
 5. For the Main PoB File, select the snapshots build you saved in step 3.
@@ -63,8 +64,7 @@ If this project helped you, you can help me :)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=XE5JR3FR458ZE&currency_code=USD)
 
-
-Note for self on tagging:
+## Notes for self on tagging for releases:
 
 git tag -a v1.0.1 -m "Release version 1.0.1"
 git push origin v1.0.1
