@@ -1,5 +1,3 @@
-using System.Windows.Forms;
-
 namespace PathOfBuildingMerge
 {
     public partial class Form1 : Form
@@ -98,9 +96,12 @@ namespace PathOfBuildingMerge
             if (string.IsNullOrWhiteSpace(outputPob))
                 outputPob = mainPob;
 
+            bool onlyAddUsedItems = checkBoxOnlyAddUsedItems.Checked;
+            bool reuseExistingItems = checkBoxReuseExisitngItems.Checked;
+
             try
             {
-                PobMergeUtils.Merge(mainPob, pobToMerge, newLoadoutName, outputPob);
+                PobMergeUtils.Merge(mainPob, pobToMerge, newLoadoutName, outputPob, onlyAddUsedItems: onlyAddUsedItems, reuseExistingItems: reuseExistingItems);
             }
             catch (Exception ex)
             {
