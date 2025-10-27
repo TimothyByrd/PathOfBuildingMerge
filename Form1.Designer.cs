@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             labelMainPobFile = new Label();
             buttonBrowseMainPobFile = new Button();
             textBoxMainPobFile = new TextBox();
@@ -42,6 +44,9 @@
             buttonMerge = new Button();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
+            checkBoxOnlyAddUsedItems = new CheckBox();
+            checkBoxReuseExisitngItems = new CheckBox();
+            toolTip1 = new ToolTip(components);
             SuspendLayout();
             // 
             // labelMainPobFile
@@ -52,6 +57,7 @@
             labelMainPobFile.Size = new Size(77, 15);
             labelMainPobFile.TabIndex = 0;
             labelMainPobFile.Text = "Main PoB file";
+            toolTip1.SetToolTip(labelMainPobFile, "The PoB file to add/replace a loadout in");
             // 
             // buttonBrowseMainPobFile
             // 
@@ -99,6 +105,7 @@
             labelPobToMerge.Size = new Size(111, 15);
             labelPobToMerge.TabIndex = 3;
             labelPobToMerge.Text = "PoB file to merge in";
+            toolTip1.SetToolTip(labelPobToMerge, "The PoB file to copy the active loadout from. If this PoB has multiple loadouts, make the desired loadout active and save the PoB first.");
             // 
             // textBoxNewLoadoutName
             // 
@@ -116,6 +123,7 @@
             label3.Size = new Size(275, 15);
             label3.TabIndex = 6;
             label3.Text = "New Loadout name (blank to use merge file name)";
+            toolTip1.SetToolTip(label3, resources.GetString("label3.ToolTip"));
             // 
             // textBoxOutputPob
             // 
@@ -143,11 +151,12 @@
             label4.Size = new Size(259, 15);
             label4.TabIndex = 8;
             label4.Text = "Output PoB file (blank to save back to main file)";
+            toolTip1.SetToolTip(label4, "Where to save the resulting merged PoB file. If left blank, the main PoB file above will be replaced.");
             // 
             // buttonMerge
             // 
-            buttonMerge.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonMerge.Location = new Point(452, 255);
+            buttonMerge.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonMerge.Location = new Point(452, 280);
             buttonMerge.Name = "buttonMerge";
             buttonMerge.Size = new Size(75, 23);
             buttonMerge.TabIndex = 11;
@@ -155,11 +164,39 @@
             buttonMerge.UseVisualStyleBackColor = true;
             buttonMerge.Click += buttonMerge_Click;
             // 
+            // checkBoxOnlyAddUsedItems
+            // 
+            checkBoxOnlyAddUsedItems.AutoSize = true;
+            checkBoxOnlyAddUsedItems.Checked = true;
+            checkBoxOnlyAddUsedItems.CheckState = CheckState.Checked;
+            checkBoxOnlyAddUsedItems.Location = new Point(12, 255);
+            checkBoxOnlyAddUsedItems.Name = "checkBoxOnlyAddUsedItems";
+            checkBoxOnlyAddUsedItems.Size = new Size(183, 19);
+            checkBoxOnlyAddUsedItems.TabIndex = 12;
+            checkBoxOnlyAddUsedItems.Text = "Only add items that are in use";
+            toolTip1.SetToolTip(checkBoxOnlyAddUsedItems, "Only copy items from the merge PoB that are used in the loadout being copied. (Should not matter for PoBs from poe.,ninja)");
+            checkBoxOnlyAddUsedItems.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxReuseExisitngItems
+            // 
+            checkBoxReuseExisitngItems.AutoSize = true;
+            checkBoxReuseExisitngItems.Checked = true;
+            checkBoxReuseExisitngItems.CheckState = CheckState.Checked;
+            checkBoxReuseExisitngItems.Location = new Point(12, 280);
+            checkBoxReuseExisitngItems.Name = "checkBoxReuseExisitngItems";
+            checkBoxReuseExisitngItems.Size = new Size(132, 19);
+            checkBoxReuseExisitngItems.TabIndex = 13;
+            checkBoxReuseExisitngItems.Text = "Reuse existing items";
+            toolTip1.SetToolTip(checkBoxReuseExisitngItems, "If an item is already in the main PoB for an existing snapshot, reuse that item rather than making another copy of it in the output PoB.");
+            checkBoxReuseExisitngItems.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(539, 289);
+            ClientSize = new Size(539, 314);
+            Controls.Add(checkBoxReuseExisitngItems);
+            Controls.Add(checkBoxOnlyAddUsedItems);
             Controls.Add(buttonMerge);
             Controls.Add(textBoxOutputPob);
             Controls.Add(buttonBrowseOutputPob);
@@ -174,7 +211,7 @@
             Controls.Add(labelMainPobFile);
             MaximizeBox = false;
             MinimizeBox = false;
-            MinimumSize = new Size(555, 328);
+            MinimumSize = new Size(555, 353);
             Name = "Form1";
             SizeGripStyle = SizeGripStyle.Hide;
             Text = "Path of Building Merge Tool";
@@ -198,5 +235,8 @@
         private Button buttonMerge;
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
+        private CheckBox checkBoxOnlyAddUsedItems;
+        private CheckBox checkBoxReuseExisitngItems;
+        private ToolTip toolTip1;
     }
 }
