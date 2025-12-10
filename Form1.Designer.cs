@@ -47,6 +47,7 @@
             checkBoxOnlyAddUsedItems = new CheckBox();
             checkBoxReuseExisitngItems = new CheckBox();
             toolTip1 = new ToolTip(components);
+            buttonMulitiMerge = new Button();
             SuspendLayout();
             // 
             // labelMainPobFile
@@ -110,7 +111,7 @@
             // textBoxNewLoadoutName
             // 
             textBoxNewLoadoutName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxNewLoadoutName.Location = new Point(12, 144);
+            textBoxNewLoadoutName.Location = new Point(12, 168);
             textBoxNewLoadoutName.Name = "textBoxNewLoadoutName";
             textBoxNewLoadoutName.Size = new Size(515, 23);
             textBoxNewLoadoutName.TabIndex = 7;
@@ -118,7 +119,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 126);
+            label3.Location = new Point(12, 150);
             label3.Name = "label3";
             label3.Size = new Size(275, 15);
             label3.TabIndex = 6;
@@ -128,14 +129,15 @@
             // textBoxOutputPob
             // 
             textBoxOutputPob.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxOutputPob.Location = new Point(93, 208);
+            textBoxOutputPob.Location = new Point(93, 232);
             textBoxOutputPob.Name = "textBoxOutputPob";
             textBoxOutputPob.Size = new Size(434, 23);
             textBoxOutputPob.TabIndex = 10;
+            textBoxOutputPob.TextChanged += textBoxOutputPob_TextChanged;
             // 
             // buttonBrowseOutputPob
             // 
-            buttonBrowseOutputPob.Location = new Point(12, 208);
+            buttonBrowseOutputPob.Location = new Point(12, 232);
             buttonBrowseOutputPob.Name = "buttonBrowseOutputPob";
             buttonBrowseOutputPob.Size = new Size(75, 23);
             buttonBrowseOutputPob.TabIndex = 9;
@@ -146,7 +148,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 190);
+            label4.Location = new Point(12, 214);
             label4.Name = "label4";
             label4.Size = new Size(259, 15);
             label4.TabIndex = 8;
@@ -156,7 +158,7 @@
             // buttonMerge
             // 
             buttonMerge.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonMerge.Location = new Point(452, 280);
+            buttonMerge.Location = new Point(452, 304);
             buttonMerge.Name = "buttonMerge";
             buttonMerge.Size = new Size(75, 23);
             buttonMerge.TabIndex = 11;
@@ -166,10 +168,11 @@
             // 
             // checkBoxOnlyAddUsedItems
             // 
+            checkBoxOnlyAddUsedItems.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxOnlyAddUsedItems.AutoSize = true;
             checkBoxOnlyAddUsedItems.Checked = true;
             checkBoxOnlyAddUsedItems.CheckState = CheckState.Checked;
-            checkBoxOnlyAddUsedItems.Location = new Point(12, 255);
+            checkBoxOnlyAddUsedItems.Location = new Point(12, 279);
             checkBoxOnlyAddUsedItems.Name = "checkBoxOnlyAddUsedItems";
             checkBoxOnlyAddUsedItems.Size = new Size(183, 19);
             checkBoxOnlyAddUsedItems.TabIndex = 12;
@@ -179,10 +182,11 @@
             // 
             // checkBoxReuseExisitngItems
             // 
+            checkBoxReuseExisitngItems.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxReuseExisitngItems.AutoSize = true;
             checkBoxReuseExisitngItems.Checked = true;
             checkBoxReuseExisitngItems.CheckState = CheckState.Checked;
-            checkBoxReuseExisitngItems.Location = new Point(12, 280);
+            checkBoxReuseExisitngItems.Location = new Point(12, 304);
             checkBoxReuseExisitngItems.Name = "checkBoxReuseExisitngItems";
             checkBoxReuseExisitngItems.Size = new Size(132, 19);
             checkBoxReuseExisitngItems.TabIndex = 13;
@@ -190,11 +194,23 @@
             toolTip1.SetToolTip(checkBoxReuseExisitngItems, "If an item is already in the main PoB for an existing snapshot, reuse that item rather than making another copy of it in the output PoB.");
             checkBoxReuseExisitngItems.UseVisualStyleBackColor = true;
             // 
+            // buttonMulitiMerge
+            // 
+            buttonMulitiMerge.Location = new Point(12, 112);
+            buttonMulitiMerge.Name = "buttonMulitiMerge";
+            buttonMulitiMerge.Size = new Size(111, 23);
+            buttonMulitiMerge.TabIndex = 14;
+            buttonMulitiMerge.Text = "Multi-merge";
+            toolTip1.SetToolTip(buttonMulitiMerge, "Select several files to merge active snapshots from at once. Either a Main PoB file or an Output PoB file must also be selected. The file anmes will be used for the loadout names.");
+            buttonMulitiMerge.UseVisualStyleBackColor = true;
+            buttonMulitiMerge.Click += buttonMulitiMerge_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(539, 314);
+            ClientSize = new Size(539, 338);
+            Controls.Add(buttonMulitiMerge);
             Controls.Add(checkBoxReuseExisitngItems);
             Controls.Add(checkBoxOnlyAddUsedItems);
             Controls.Add(buttonMerge);
@@ -238,5 +254,6 @@
         private CheckBox checkBoxOnlyAddUsedItems;
         private CheckBox checkBoxReuseExisitngItems;
         private ToolTip toolTip1;
+        private Button buttonMulitiMerge;
     }
 }
