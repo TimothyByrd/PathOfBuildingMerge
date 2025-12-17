@@ -47,7 +47,7 @@
             checkBoxOnlyAddUsedItems = new CheckBox();
             checkBoxReuseExisitngItems = new CheckBox();
             toolTip1 = new ToolTip(components);
-            buttonMulitiMerge = new Button();
+            buttonMultiMerge = new Button();
             SuspendLayout();
             // 
             // labelMainPobFile
@@ -75,6 +75,7 @@
             textBoxMainPobFile.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxMainPobFile.Location = new Point(93, 27);
             textBoxMainPobFile.Name = "textBoxMainPobFile";
+            textBoxMainPobFile.PlaceholderText = "<not specified - an empty PoB will be used>";
             textBoxMainPobFile.Size = new Size(434, 23);
             textBoxMainPobFile.TabIndex = 2;
             textBoxMainPobFile.TextChanged += textBoxMainPobFile_TextChanged;
@@ -113,6 +114,7 @@
             textBoxNewLoadoutName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxNewLoadoutName.Location = new Point(12, 168);
             textBoxNewLoadoutName.Name = "textBoxNewLoadoutName";
+            textBoxNewLoadoutName.PlaceholderText = "<the merge file name will be used as the loadout name>";
             textBoxNewLoadoutName.Size = new Size(515, 23);
             textBoxNewLoadoutName.TabIndex = 7;
             // 
@@ -131,6 +133,7 @@
             textBoxOutputPob.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxOutputPob.Location = new Point(93, 232);
             textBoxOutputPob.Name = "textBoxOutputPob";
+            textBoxOutputPob.PlaceholderText = "<results will be saved back to the Main PoB file>";
             textBoxOutputPob.Size = new Size(434, 23);
             textBoxOutputPob.TabIndex = 10;
             textBoxOutputPob.TextChanged += textBoxOutputPob_TextChanged;
@@ -194,23 +197,23 @@
             toolTip1.SetToolTip(checkBoxReuseExisitngItems, "If an item is already in the main PoB for an existing snapshot, reuse that item rather than making another copy of it in the output PoB.");
             checkBoxReuseExisitngItems.UseVisualStyleBackColor = true;
             // 
-            // buttonMulitiMerge
+            // buttonMultiMerge
             // 
-            buttonMulitiMerge.Location = new Point(12, 112);
-            buttonMulitiMerge.Name = "buttonMulitiMerge";
-            buttonMulitiMerge.Size = new Size(111, 23);
-            buttonMulitiMerge.TabIndex = 14;
-            buttonMulitiMerge.Text = "Multi-merge";
-            toolTip1.SetToolTip(buttonMulitiMerge, "Select several files to merge active snapshots from at once. Either a Main PoB file or an Output PoB file must also be selected. The file anmes will be used for the loadout names.");
-            buttonMulitiMerge.UseVisualStyleBackColor = true;
-            buttonMulitiMerge.Click += buttonMulitiMerge_Click;
+            buttonMultiMerge.Location = new Point(12, 112);
+            buttonMultiMerge.Name = "buttonMultiMerge";
+            buttonMultiMerge.Size = new Size(111, 23);
+            buttonMultiMerge.TabIndex = 14;
+            buttonMultiMerge.Text = "Multi-merge";
+            toolTip1.SetToolTip(buttonMultiMerge, "Select several files to merge active snapshots from at once. Either a Main PoB file or an Output PoB file must also be selected. The file anmes will be used for the loadout names.");
+            buttonMultiMerge.UseVisualStyleBackColor = true;
+            buttonMultiMerge.Click += buttonMultiMerge_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(539, 338);
-            Controls.Add(buttonMulitiMerge);
+            Controls.Add(buttonMultiMerge);
             Controls.Add(checkBoxReuseExisitngItems);
             Controls.Add(checkBoxOnlyAddUsedItems);
             Controls.Add(buttonMerge);
@@ -254,6 +257,6 @@
         private CheckBox checkBoxOnlyAddUsedItems;
         private CheckBox checkBoxReuseExisitngItems;
         private ToolTip toolTip1;
-        private Button buttonMulitiMerge;
+        private Button buttonMultiMerge;
     }
 }

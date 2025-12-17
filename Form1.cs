@@ -1,3 +1,5 @@
+using System.Security;
+
 namespace PathOfBuildingMerge
 {
     public partial class Form1 : Form
@@ -63,16 +65,18 @@ namespace PathOfBuildingMerge
             ShowOpenFileDialog("Select the PoB file to merge in", textBoxPobFileToMerge);
         }
 
-        private void buttonMulitiMerge_Click(object sender, EventArgs e)
+        private void buttonMultiMerge_Click(object sender, EventArgs e)
         {
             var result = ShowOpenFileDialog("Select multiple PoB snapshots to merge together", String.Empty, true);
             if (result.Length > 1)
             {
                 _multiMergeFiles = result;
-                textBoxPobFileToMerge.Text = "<multiple>";
+                textBoxPobFileToMerge.PlaceholderText = "<multiple>";
+                textBoxPobFileToMerge.Text = string.Empty;
             }
             else if (result.Length == 1)
             {
+                textBoxPobFileToMerge.PlaceholderText = string.Empty;
                 textBoxPobFileToMerge.Text = result[0];
                 _multiMergeFiles = [];
             }
