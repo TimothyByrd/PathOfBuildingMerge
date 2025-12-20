@@ -5,8 +5,9 @@ another.
 
 To use, run the tool and specify the following:
 
-- The main PoB file to merge into.
+- The main PoB file to merge into. If balnk, will start with an empty PoB.
 - The merge PoB file to take one loadout from and copy into the main PoB.
+    - Snapshots form multiple PoB files can be merged at once.
 - The name of the new loadout. If blank, the new loadout will be given the name of the merge file.
 - The name of the PoB file to save the result to. If blank, the main PoB file will be saved on top of.
 
@@ -25,7 +26,8 @@ duplicates when importing multiple snapshots of a build from
 poe.ninja.
 
 Path of Building is written in Lua, but I haven't worked with Lua so
-this is in C#. I built it using Visual Studio Community Edition.
+this is in C# using .Net 8.0. I built it using Visual Studio Community
+Edition. 
 
 ## Sample Usage
 
@@ -38,14 +40,12 @@ Here is an example of creating a PoB with several build snapshots.
     - Open the snapshot in Path of Building
     - Make sure the config has the pantheon and bandit choice set correctly for the snapshot.
     - Save the snapshot with a good name. For example, for the "Hour 3" snapshot, I save the PoB as "Hour 3". (I'm clever that way.)
-3. Create a new, empty build in Path of Building and immediately save it. (We'll pretend I've saved it as "All the Snapshots".)
-4. Run the PathOfBuildingMergeTool.
-5. For the Main PoB File, select the snapshots build you saved in step 3.
-6. For each snapshot ("Hour 3", etc.) that you saved from poe.ninja:
-    - Select that snapshot file as the PoB file to merge in.
-    - Click the "Merge" button.
-7. Open "All the Snapshots" in Path of Building.
-8. Optionally clean things up by deleting the "Default" sets (tree, items, skills and config).
+3. Run the PathOfBuildingMergeTool.
+4. Leave the Main PoB File blank to start with an empty PoB.
+5. Click the Multi-merge button and select all the snapshots you saved in step 2.
+6. Select a name for the Output PoB.
+7. Click the Merge button.
+8. Open your new, merged PoB in Path of Building.
 
 ### Example: Copying a loadout from one PoB to another.
 
@@ -66,5 +66,5 @@ If this project helped you, you can help me :)
 
 ## Notes for self on tagging for releases:
 
-git tag -a v1.0.1 -m "Release version 1.0.1"
-git push origin v1.0.1
+git tag -a v1.0.5 -m "Release version 1.0.5"
+git push origin v1.0.5
