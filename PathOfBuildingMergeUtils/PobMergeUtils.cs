@@ -1,8 +1,8 @@
 ﻿using System.Xml.Linq;
 
-namespace PathOfBuildingMerge
+namespace PathOfBuildingMergeUtils
 {
-    internal class PobMergeUtils
+    public class PobMergeUtils
     {
         internal struct SetType
         {
@@ -17,7 +17,7 @@ namespace PathOfBuildingMerge
         static SetType Tree = new() { Node = "Tree", Element = "Spec", Active = "activeSpec" };
 
 
-        internal static void Merge(string mainPob, string pobToAdd, string newLoadoutName, string pobResult, bool onlyAddUsedItems = true, bool reuseExistingItems = true)
+        public static void Merge(string mainPob, string pobToAdd, string newLoadoutName, string pobResult, bool onlyAddUsedItems = true, bool reuseExistingItems = true)
         {
             var baseFileName = Path.GetFileName(mainPob);
             var baseDoc = XDocument.Load(mainPob);

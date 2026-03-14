@@ -1,10 +1,10 @@
-using System.Security;
+using PathOfBuildingMergeUtils;
 
 namespace PathOfBuildingMerge
 {
     public partial class Form1 : Form
     {
-        private string _pobPath;
+        private readonly string _pobPath;
         private string[] _multiMergeFiles = [];
 
         public Form1()
@@ -147,7 +147,7 @@ namespace PathOfBuildingMerge
             }
 
             bool onlyAddUsedItems = checkBoxOnlyAddUsedItems.Checked;
-            bool reuseExistingItems = checkBoxReuseExisitngItems.Checked;
+            bool reuseExistingItems = checkBoxReuseExistingItems.Checked;
 
             if (_multiMergeFiles.Length > 1)
             {

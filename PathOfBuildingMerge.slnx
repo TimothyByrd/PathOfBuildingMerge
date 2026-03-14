@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="PathOfBuildingMerge.csproj" />
+  <Project Path="PathOfBuildingMerge/PathOfBuildingMerge.csproj" />
+  <Project Path="PathOfBuildingMergeCLI/PathOfBuildingMergeCLI.csproj" Id="2d115f54-24b4-4a62-b26f-1be18c05da69" />
+  <Project Path="PathOfBuildingMergeUtils/PathOfBuildingMergeUtils.csproj" />
 </Solution>
