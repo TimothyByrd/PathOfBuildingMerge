@@ -5,7 +5,7 @@ another.
 
 To use, run the tool and specify the following:
 
-- The main PoB file to merge into. If balnk, will start with an empty PoB.
+- The main PoB file to merge into. If blank, will start with an empty PoB.
 - The merge PoB file to take one loadout from and copy into the main PoB.
     - Snapshots form multiple PoB files can be merged at once.
 - The name of the new loadout. If blank, the new loadout will be given the name of the merge file.
