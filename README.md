@@ -11,19 +11,26 @@ To use, run the tool and specify the following:
 - The name of the new loadout. If blank, the new loadout will be given the name of the merge file.
 - The name of the PoB file to save the result to. If blank, the main PoB file will be saved on top of.
 
-If the main PoB file already has sets (item, skill, config, tree) with
-the same name as the new loadout name, those existing sets will be
-deleted.
-
 If the PoB being merged has more than one set of items, skills, etc.,
 it will try to merge in the currently active ones. So if you select
 the loadout you want it import and then save to merge PoB, that
 loadout should be the one that gets imported.
 
-The tool checks for items that already exist in the main PoB and tries
-to use them instead of importing a new copy. This should help reduce
-duplicates when importing multiple snapshots of a build from
-poe.ninja.
+By default, the tool checks for items that already exist in the main
+PoB and tries to use them instead of importing a new copy. This should
+help reduce duplicates when importing multiple snapshots of a build
+from poe.ninja.
+
+By default, the tool only copies in items that are used in the loadout
+being merged in.
+
+By default, the tool gives the loadout being merged in a unique tag
+like "{1}", "{2}", etc. This means you need to be careful about
+merging in the same loadout multiple times.
+
+If the automatic tagging is turned off, then if the main PoB file
+already has sets (item, skill, config, tree) with the same name as the
+new loadout name, those existing sets will be deleted.
 
 Path of Building is written in Lua, but I haven't worked with Lua so
 this is in C# using .Net 8.0. I built it using Visual Studio Community

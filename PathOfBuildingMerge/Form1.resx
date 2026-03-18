@@ -120,9 +120,6 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>291, 17</value>
   </metadata>
-  <data name="label3.ToolTip" xml:space="preserve">
-    <value>The name of the new loadout to add to the main PoB file. If any sets (tree, item, skill, config) of the same name already exist in the PoB, they will be removed. If this field is left blank the name of the PoB merge file above will be used as the new loadout name.</value>
-  </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

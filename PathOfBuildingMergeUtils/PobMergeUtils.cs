@@ -1,8 +1,9 @@
-﻿using System.Xml.Linq;
+﻿using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace PathOfBuildingMergeUtils
 {
-    public class PobMergeUtils
+    public partial class PobMergeUtils
     {
         internal struct SetType
         {
@@ -17,8 +18,10 @@ namespace PathOfBuildingMergeUtils
         static SetType Tree = new() { Node = "Tree", Element = "Spec", Active = "activeSpec" };
 
 
-        public static void Merge(string mainPob, string pobToAdd, string newLoadoutName, string pobResult, bool onlyAddUsedItems = true, bool reuseExistingItems = true)
+        public static void Merge(string mainPob, string pobToAdd, string newLoadoutName, string pobResult, bool onlyAddUsedItems = true, bool reuseExistingItems = true, bool autoTag = true)
         {
+            newLoadoutName = newLoadoutName.Trim();
+            
             var baseFileName = Path.GetFileName(mainPob);
             var baseDoc = XDocument.Load(mainPob);
 
@@ -26,6 +29,27 @@ namespace PathOfBuildingMergeUtils
             var baseSkillsNode = GetRootNode(baseDoc, baseFileName, Skills.Node);
             var baseItemsNode = GetRootNode(baseDoc, baseFileName, Items.Node);
             var baseConfigNode = GetRootNode(baseDoc, baseFileName, Config.Node);
+
+            if (autoTag)
+            {
+                HashSet<string> usedTags = [];
+                CollectLoadoutTagsTree(baseTreeNode, usedTags);
+                CollectLoadoutTagsItems(baseItemsNode, usedTags);
+                CollectLoadoutTagsConfig(baseConfigNode, usedTags);
+                CollectLoadoutTagsSkills(baseSkillsNode, usedTags);
+                HashSet<string> tagsInNewLoadoutName = [];
+                AddTagsFromString(tagsInNewLoadoutName, newLoadoutName);
+                bool needToUpdateTag = tagsInNewLoadoutName.Count != 1 || usedTags.Contains(tagsInNewLoadoutName.First());
+                if (needToUpdateTag)
+                {
+                    var tagNum = 1;
+                    while (usedTags.Contains($"{tagNum}")) ++tagNum;
+                    var updatedName = TagRegex.Replace(newLoadoutName, $"{{{tagNum}}}");
+                    if (string.Equals(newLoadoutName, updatedName))
+                        updatedName = $"{newLoadoutName} {{{tagNum}}}";
+                    newLoadoutName = updatedName;
+                }
+            }
 
             RemoveTreeSpec(baseTreeNode, newLoadoutName);
             RemoveSkillSet(baseSkillsNode, newLoadoutName);
@@ -248,5 +272,55 @@ namespace PathOfBuildingMergeUtils
             var node = doc.Root?.Element(nodeName);
             return node ?? throw new Exception($"Docuemnt '{fileName}' does not contain node '{nodeName}'");
         }
+
+        private static void CollectLoadoutTagsByType(XElement parent, HashSet<string> usedTags, SetType setType)
+        {
+            var titles = parent.Elements(setType.Element).Select(e => (string?)e.Attribute("title"));
+            foreach (var title in titles)
+                AddTagsFromString(usedTags, title);
+        }
+
+        private static void CollectLoadoutTagsItems(XElement itemsNode, HashSet<string> usedTags)
+        {
+            CollectLoadoutTagsByType(itemsNode, usedTags, Items);
+        }
+
+        private static void CollectLoadoutTagsConfig(XElement configNode, HashSet<string> usedTags)
+        {
+            CollectLoadoutTagsByType(configNode, usedTags, Config);
+        }
+
+        private static void CollectLoadoutTagsSkills(XElement skillsNode, HashSet<string> usedTags)
+        {
+            CollectLoadoutTagsByType(skillsNode, usedTags, Skills);
+        }
+
+        private static void CollectLoadoutTagsTree(XElement treeNode, HashSet<string> usedTags)
+        {
+            var titles = treeNode.Elements(Tree.Element).Select(e => (string?)e.Attribute("title"));
+            foreach (var title in titles)
+                AddTagsFromString(usedTags, title);
+        }
+
+        private static readonly Regex TagRegex = TagRegexGen();
+
+        private static void AddTagsFromString(HashSet<string> usedTags, string? s)
+        {
+            if (usedTags == null || string.IsNullOrWhiteSpace(s)) return;
+            var match = TagRegex.Match(s);
+            if (match.Success)
+            {
+                var tags = match.Groups[1].Value.Split(',');
+                foreach (var tag in tags)
+                {
+                    var trimmed = tag?.Trim();
+                    if (string.IsNullOrWhiteSpace(trimmed)) continue;
+                    usedTags.Add(trimmed);
+                }
+            }
+        }
+
+        [GeneratedRegex("\\{(.+)\\}")]
+        private static partial Regex TagRegexGen();
     }
 }

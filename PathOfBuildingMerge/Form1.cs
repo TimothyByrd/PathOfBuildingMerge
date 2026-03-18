@@ -148,6 +148,7 @@ namespace PathOfBuildingMerge
 
             bool onlyAddUsedItems = checkBoxOnlyAddUsedItems.Checked;
             bool reuseExistingItems = checkBoxReuseExistingItems.Checked;
+            bool autoTag = checkBoxAutoTag.Checked;
 
             if (_multiMergeFiles.Length > 1)
             {
@@ -156,7 +157,7 @@ namespace PathOfBuildingMerge
                     var loadout = Path.GetFileNameWithoutExtension(file);
                     try
                     {
-                        PobMergeUtils.Merge(mainPob, file, loadout, outputPob, onlyAddUsedItems: onlyAddUsedItems, reuseExistingItems: reuseExistingItems);
+                        PobMergeUtils.Merge(mainPob, file, loadout, outputPob, onlyAddUsedItems: onlyAddUsedItems, reuseExistingItems: reuseExistingItems, autoTag: autoTag);
                     }
                     catch (Exception ex)
                     {
@@ -177,7 +178,7 @@ namespace PathOfBuildingMerge
 
             try
             {
-                PobMergeUtils.Merge(mainPob, pobToMerge, newLoadoutName, outputPob, onlyAddUsedItems: onlyAddUsedItems, reuseExistingItems: reuseExistingItems);
+                PobMergeUtils.Merge(mainPob, pobToMerge, newLoadoutName, outputPob, onlyAddUsedItems: onlyAddUsedItems, reuseExistingItems: reuseExistingItems, autoTag: autoTag);
             }
             catch (Exception ex)
             {
