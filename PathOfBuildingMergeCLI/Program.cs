@@ -1,5 +1,4 @@
 using System.CommandLine;
-using System.CommandLine.Parsing;
 using PathOfBuildingMergeUtils;
 
 namespace PathOfBuildingMergeCLI;
@@ -8,53 +7,70 @@ internal static class Program
 {
     static int Main(string[] args)
     {
-        var rootCommand = new RootCommand("PobMergeCLI - merge Path of Building loadouts from the command line");
-
-        var mainOption = new Option<string?>(
-            new[] { "--main", "-m" },
-            "Main PoB file to merge into. Omit to start from an empty PoB (requires --output).");
-
-        var mergeOption = new Option<string[]>(
-            new[] { "--merge", "-M" },
-            "PoB file to merge in. Repeat for multi-merge.");
-        mergeOption.IsRequired = true;
-
-        var loadoutOption = new Option<string?>(
-            new[] { "--loadout", "-l" },
-            "Name for the new loadout. Defaults to merge filename.");
-
-        var outputOption = new Option<string?>(
-            new[] { "--output", "-o" },
-            "Output file. Defaults to overwriting --main.");
-
-        var allItemsOption = new Option<bool>(
-            new[] { "--all-items" },
-            "Import all items, not just those used by the loadout.");
-
-        var noReuseOption = new Option<bool>(
-            new[] { "--no-reuse" },
-            "Always add items as new copies; don't match duplicates.");
-
-        rootCommand.Add(mainOption);
-        rootCommand.Add(mergeOption);
-        rootCommand.Add(loadoutOption);
-        rootCommand.Add(outputOption);
-        rootCommand.Add(allItemsOption);
-        rootCommand.Add(noReuseOption);
-
-        rootCommand.SetHandler((main, mergeFiles, loadout, output, allItems, noReuse) =>
+        var mainOption = new Option<string?>("--main", "-m")
         {
-            Environment.Exit(ExecuteMerge(main, mergeFiles, loadout, output, allItems, noReuse));
-        }, mainOption, mergeOption, loadoutOption, outputOption, allItemsOption, noReuseOption);
+            Description = "Main PoB file to merge into. Omit to start from an empty PoB (requires --output).",
+        };
 
-        return rootCommand.Invoke(args);
+        var mergeOption = new Option<string[]>("--merge", "-M")
+        {
+            Description = "PoB file to merge in. Repeat for multi-merge.",
+            Required = true,
+        };
+
+        var loadoutOption = new Option<string?>("--loadout", "-l")
+        {
+            Description = "Name for the new loadout. Defaults to merge filename.",
+        };
+
+        var outputOption = new Option<string?>("--output", "-o")
+        {
+            Description = "Output file. Defaults to overwriting --main.",
+        };
+
+        var allItemsOption = new Option<bool>("--all-items")
+        {
+            Description = "Import all items, not just those used by the loadout.",
+        };
+
+        var noReuseOption = new Option<bool>("--no-reuse")
+        {
+            Description = "Always add items as new copies; don't match duplicates.",
+        };
+
+        var noAutoTagOption = new Option<bool>("--no-autotag")
+        {
+            Description = "Do not automatically give merged loadouts a unique tag like {1}, {2}, etc.",
+        };
+
+        var rootCommand = new RootCommand("PobMergeCLI - merge Path of Building loadouts from the command line")
+        {
+            mainOption, mergeOption, loadoutOption, outputOption, allItemsOption, noReuseOption, noAutoTagOption,
+        };
+
+        rootCommand.SetAction(parseResult =>
+            {
+                var main = parseResult.GetValue(mainOption);
+                var mergeFiles = parseResult.GetValue(mergeOption);
+                var loadout = parseResult.GetValue(loadoutOption);
+                var output = parseResult.GetValue(outputOption);
+                var allItems = parseResult.GetValue(allItemsOption);
+                var noReuse = parseResult.GetValue(noReuseOption);
+                var noAutoTag = parseResult.GetValue(noAutoTagOption);
+
+                if (mergeFiles != null && mergeFiles.Length > 0)
+                    ExecuteMerge(main, mergeFiles, loadout, output, allItems, noReuse, noAutoTag);
+            });
+
+        return rootCommand.Parse(args).Invoke();
     }
 
-    private static int ExecuteMerge(string? mainPob, string[] mergeFiles, string? loadoutName, string? outputPob, bool allItems, bool noReuse)
+    private static int ExecuteMerge(string? mainPob, string[] mergeFiles, string? loadoutName, string? outputPob, bool allItems, bool noReuse, bool noAutoTag)
     {
         bool onlyAddUsedItems = !allItems;
         bool reuseExistingItems = !noReuse;
-
+        bool autoTag = !noAutoTag;
+        
         bool startingWithEmptyPoB = false;
         if (string.IsNullOrWhiteSpace(mainPob))
         {
@@ -97,7 +113,8 @@ internal static class Program
                 {
                     PobMergeUtils.Merge(mainPob, file, name, outputPob,
                         onlyAddUsedItems: onlyAddUsedItems,
-                        reuseExistingItems: reuseExistingItems);
+                        reuseExistingItems: reuseExistingItems,
+                        autoTag: autoTag);
                 }
                 catch (Exception ex)
                 {
@@ -118,7 +135,8 @@ internal static class Program
         {
             PobMergeUtils.Merge(mainPob, singleMerge, loadoutName, outputPob,
                 onlyAddUsedItems: onlyAddUsedItems,
-                reuseExistingItems: reuseExistingItems);
+                reuseExistingItems: reuseExistingItems,
+                autoTag: autoTag);
         }
         catch (Exception ex)
         {
